@@ -1,3 +1,6 @@
+const template = document.querySelector('#pet-card-template');
+const wrapper = document.createDocumentFragment();
+
 async function start() {
   const res = await fetch(
     'https://api.weather.gov/gridpoints/MFL/110,50/forecast'
@@ -18,8 +21,12 @@ async function petsArea() {
   const petsData = await res.json();
 
   petsData.forEach((pet) => {
-    console.log(pet.name);
+    const clone = template.content.cloneNode(true);
+    clone.querySelector('h3').textContent = pet.name;
+    console.log(clone);
+    wrapper.appendChild(clone);
   });
+  document.querySelector('.list-of-pets').appendChild(wrapper);
 }
 
 petsArea();
