@@ -10,3 +10,16 @@ async function start() {
 }
 
 start();
+
+async function petsArea() {
+  const res = await fetch(
+    'https://learnwebcode.github.io/bootcamp-pet-data/pets.json'
+  );
+  const petsData = await res.json();
+
+  petsData.forEach((pet) => {
+    console.log(pet.name);
+  });
+}
+
+petsArea();
